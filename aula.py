@@ -9,8 +9,8 @@ conexao = mysql.connector.connect(
 #CRUD
 
 cursor = conexao.cursor()
-nome_produto = "Redbull"
-valor = 16
+nome_produto = "Budwiser"
+valor = 12
 
 #CREATE
 """
@@ -25,6 +25,16 @@ cursor.execute(comando)
 resultado = cursor.fetchall() # <- lê o bd
 print(resultado)
 """
+#UPDATE
+"""
+comando = f'UPDATE vendas SET valor = {valor} WHERE nome_produto = "{nome_produto}"'
+cursor.execute(comando)
+conexao.commit()
+"""
+#DELETE
+comando = f'DELETE FROM vendas WHERE nome_produto = "{nome_produto}"'
+cursor.execute(comando)
+conexao.commit() #<- edita o bd
 
 cursor.close()
 conexao.close()
